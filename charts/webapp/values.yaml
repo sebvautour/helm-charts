@@ -7,7 +7,6 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -15,7 +14,7 @@ serviceAccount:
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the name template
   name: ""
 
 podAnnotations: {}
@@ -34,6 +33,18 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 8080
+
+containerPort: 8080
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
 
 ingress:
   enabled: false
@@ -71,3 +82,16 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# optionall can be enabled to mount a persistent volume
+# can create a pvc with the given info or use an
+# existing one if persistence.existingClaim is set
+persistence:
+  enabled: false
+  storageClass: ""
+  annotations: {}
+  existingClaim: ""
+  accessMode: ReadWriteOnce
+  accessModes: []
+  size: 10Gi
+  mountPath: /data
