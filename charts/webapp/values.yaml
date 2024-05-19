@@ -107,3 +107,6 @@ persistence:
   size: 10Gi
   mountPath: /data
   subPath: ""
+  nfs: {}
+    # server: storage.example.com
+    # path: "/mount"
