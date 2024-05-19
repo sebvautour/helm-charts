@@ -2,6 +2,18 @@ apiVersion: v1
 entries:
   webapp:
   - apiVersion: v2
+    created: "2024-05-19T02:46:49.956789195Z"
+    description: A generic Helm chart to deploy any web application
+    digest: 2962c750bdcfde57140f575c03881492ab387f59cb4faf5d6e8e0df18237de39
+    maintainers:
+    - name: sebvautour
+      url: https://github.com/sebvautour/helm-charts
+    name: webapp
+    type: application
+    urls:
+    - https://github.com/sebvautour/helm-charts/releases/download/webapp-0.2.0/webapp-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2024-05-19T01:45:40.514156322Z"
     description: A generic Helm chart to deploy any web application
     digest: 5daa23234d4aa39d5717ec6a30e00d03fcd15d1123b9775b86b6be870dc4bd17
@@ -13,4 +25,4 @@ entries:
     urls:
     - https://github.com/sebvautour/helm-charts/releases/download/webapp-0.1.0/webapp-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-19T01:45:40.514167413Z"
+generated: "2024-05-19T02:46:49.956796789Z"
