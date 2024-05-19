@@ -107,10 +107,3 @@ persistence:
   size: 10Gi
   mountPath: /data
   subPath: ""
-  pv:
-    # if true, the physical volume will be created by this chart
-    # useful for NFS mounts
-    create: false
-    nfs: {}
-      # server: storage.example.com
-      # path: "/mount"

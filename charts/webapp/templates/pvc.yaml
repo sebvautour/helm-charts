@@ -1,26 +1,4 @@
 {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
-{{- if .Values.persistence.pv.create }}
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ include "webapp.name" . }}
-spec:
-  capacity:
-    storage: {{ .Values.persistence.size | quote }}
-  accessModes:
-  {{- if not (empty .Values.persistence.accessModes) }}
-  {{- range .Values.persistence.accessModes }}
-    - {{ . | quote }}
-  {{- end }}
-  {{- else }}
-    - {{ .Values.persistence.accessMode | quote }}
-  {{- end }}
-  nfs:
-    {{- toYaml .Values.persistence.pv.nfs | nindent 4 }}
-{{- end -}}
-
----
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
