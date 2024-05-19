@@ -82,3 +82,16 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# optionall can be enabled to mount a persistent volume
+# can create a pvc with the given info or use an
+# existing one if persistence.existingClaim is set
+persistence:
+  enabled: false
+  storageClass: ""
+  annotations: {}
+  existingClaim: ""
+  accessMode: ReadWriteOnce
+  accessModes: []
+  size: 10Gi
+  mountPath: /data

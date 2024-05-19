@@ -39,3 +39,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+PVC name, could be an existing
+*/}}
+{{- define "webapp.pvcName" -}}
+{{- default (include "webapp.name" .) .Values.persistence.existingClaim }}
+{{- end }}
