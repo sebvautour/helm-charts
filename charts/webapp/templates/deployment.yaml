@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "webapp.name" . }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   labels:
     {{- include "webapp.labels" . | nindent 4 }}
 spec:
@@ -47,6 +51,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.persistence.mountPath | quote }}
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
