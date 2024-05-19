@@ -95,3 +95,4 @@ persistence:
   accessModes: []
   size: 10Gi
   mountPath: /data
+  subPath: ""
