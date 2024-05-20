@@ -1,7 +1,7 @@
 apiVersion: v2
 name: webapp
 description: A generic Helm chart to deploy any web application
-version: 0.6.0
+version: 0.7.0
 type: application
 maintainers:
 - name: sebvautour
