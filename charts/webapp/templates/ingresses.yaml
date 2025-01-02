@@ -1,16 +1,17 @@
 {{- $svcPort := .Values.service.port -}}
 {{- $name := include "webapp.name" . -}}
+{{- $capabilities := .Capabilities -}}
 
 {{- range .Values.ingresses }}
 ---
-{{- if and .className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+{{- if and .className (not (semverCompare ">=1.18-0" $capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .annotations "kubernetes.io/ingress.class" .className}}
   {{- end }}
 {{- end }}
-{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.19-0" $capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
-{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- else if semverCompare ">=1.14-0" $capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
 apiVersion: extensions/v1beta1
@@ -25,7 +26,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if and .className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  {{- if and .className (semverCompare ">=1.18-0" $capabilities.KubeVersion.GitVersion) }}
   ingressClassName: {{ .className }}
   {{- end }}
   {{- if .tls }}
@@ -45,11 +46,11 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
-            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            {{- if and .pathType (semverCompare ">=1.18-0" $capabilities.KubeVersion.GitVersion) }}
             pathType: {{ .pathType }}
             {{- end }}
             backend:
-              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              {{- if semverCompare ">=1.19-0" $capabilities.KubeVersion.GitVersion }}
               service:
                 name: {{ $name }}
                 port:
