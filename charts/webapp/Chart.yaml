@@ -1,8 +1,8 @@
 apiVersion: v2
 name: webapp
 description: A generic Helm chart to deploy any web application
-version: 0.8.3
+version: 0.9.0
 type: application
 maintainers:
-- name: sebvautour
-  url: https://github.com/sebvautour/helm-charts
+  - name: sebvautour
+    url: https://github.com/sebvautour/helm-charts

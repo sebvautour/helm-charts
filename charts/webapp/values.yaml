@@ -1,6 +1,7 @@
 replicaCount: 1
 
-env: []
+env:
+  []
   # - name: SOME_CONFIG
   #   value: value
   # - name: SOME_SECRET_CONFIG
@@ -30,10 +31,12 @@ podAnnotations: {}
 
 deploymentAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -61,7 +64,8 @@ readinessProbe:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -74,7 +78,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-ingresses: []
+ingresses:
+  []
   # - name: ""
   #   className: ""
   #   annotations: {}
@@ -90,7 +95,8 @@ ingresses: []
   #   #    hosts:
   #   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
@@ -110,7 +116,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
 
 # DEPRECATED: use volumes instead
 #
@@ -132,7 +137,8 @@ persistence:
 # optional can be enabled to mount a persistent volumes.
 # can create a pvc with the given info or use an
 # existing one if persistence.existingClaim is set
-volumes: []
+volumes:
+  []
   # - enabled: false
   #   name: data
   #   storageClass: ""
@@ -144,3 +150,9 @@ volumes: []
   #   size: 10Gi
   #   mountPath: /data
   #   subPath: ""
+
+# optional value to mount secrets as a volume
+secretMounts:
+  []
+  # - secretName: ""
+  #   mountPath: ""
