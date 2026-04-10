@@ -1,0 +1,27 @@
+{{- $svcPort := .Values.service.port -}}
+{{- $name := include "webapp.name" . -}}
+
+{{- range .Values.httproutes }}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $name }}-{{ .name }}
+  labels:
+    {{- include "webapp.labels" $ | nindent 4 }}
+spec:
+  parentRefs:
+    {{- toYaml .parentRefs | nindent 4 }}
+  hostnames:
+    {{- toYaml .hostnames | nindent 4 }}
+  rules:
+   {{- range .rules }}
+    - matches:
+      {{- toYaml .matches | nindent 6 }}
+      filters:
+      {{- toYaml .filters | nindent 6 }}
+      backendRefs:
+        - name: {{ $name }}
+          port: {{ $svcPort }}
+    {{- end }}
+{{- end }}
