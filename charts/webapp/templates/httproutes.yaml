@@ -15,11 +15,11 @@ spec:
   hostnames:
     {{- toYaml .hostnames | nindent 4 }}
   rules:
-   {{- range .rules }}
+    {{- range .rules }}
     - matches:
-      {{- toYaml .matches | nindent 6 }}
+      {{- toYaml .matches | nindent 8 }}
       filters:
-      {{- toYaml .filters | nindent 6 }}
+      {{- toYaml .filters | nindent 8 }}
       backendRefs:
         - name: {{ $name }}
           port: {{ $svcPort }}
