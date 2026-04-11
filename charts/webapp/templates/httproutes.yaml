@@ -21,7 +21,9 @@ spec:
       filters:
       {{- toYaml .filters | nindent 8 }}
       backendRefs:
-        - name: {{ $name }}
+        - group: ''	
+          kind: Service
+          name: {{ $name }}
           port: {{ $svcPort }}
     {{- end }}
 {{- end }}
